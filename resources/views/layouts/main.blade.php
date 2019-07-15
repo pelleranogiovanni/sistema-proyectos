@@ -13,11 +13,14 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
     <title>Material Pro Admin Template - The Most Complete & Trusted Bootstrap 4 Admin Template</title>
     <!-- Bootstrap Core CSS -->
-    <link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    {{-- <link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"> --}}
+    <link href="{{ asset('/assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="css/style.css" rel="stylesheet">
+    {{-- <link href="css/style.css" rel="stylesheet"> --}}
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <!-- You can change the theme colors from here -->
-    <link href="css/colors/blue.css" id="theme" rel="stylesheet">
+    {{-- <link href="css/colors/blue.css" id="theme" rel="stylesheet"> --}}
+    <link href="{{ asset('css/colors/blue.css') }}" id="theme" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -102,14 +105,8 @@
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar">
                 <!-- Sidebar navigation-->
-                <nav class="sidebar-nav">
-                    <ul id="sidebarnav">
-                        <li> <a class="waves-effect waves-dark" href="index.html" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a>
-                        </li>
-                        <li> <a class="waves-effect waves-dark" href="pages-profile.html" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">Profile</span></a>
-                        </li>
-                    </ul>
-                </nav>
+                @include('partials.nav')
+
                 <!-- End Sidebar navigation -->
             </div>
             <!-- End Sidebar scroll-->
@@ -195,20 +192,26 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
-    <script src="/assets/plugins/jquery/jquery.min.js"></script>
+    {{-- <script src="/assets/plugins/jquery/jquery.min.js"></script> --}}
+    <script src="{{ asset('/assets/plugins/jquery/jquery.min.js') }}"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="/assets/plugins/bootstrap/js/tether.min.js"></script>
     <script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="js/jquery.slimscroll.js"></script>
+    {{-- <script src="js/jquery.slimscroll.js"></script> --}}
+    <script src="{{ asset('js/jquery.slimscroll.js') }}"></script>
+
     <!--Wave Effects -->
-    <script src="js/waves.js"></script>
+    {{-- <script src="js/waves.js"></script> --}}
+    <script src="{{ asset('js/waves.js') }}"></script>
     <!--Menu sidebar -->
-    <script src="js/sidebarmenu.js"></script>
+    {{-- <script src="js/sidebarmenu.js"></script> --}}
+    <script src="{{ asset('js/sidebarmenu.js') }}"></script>
     <!--stickey kit -->
     <script src="/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <!--Custom JavaScript -->
-    <script src="js/custom.min.js"></script>
+    {{-- <script src="js/custom.min.js"></script> --}}
+    <script src="{{ asset('js/custom.min.js') }}"></script>
 </body>
 
 </html>

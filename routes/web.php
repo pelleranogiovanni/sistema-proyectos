@@ -19,3 +19,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('/proyectos', 'ProyectosController');
+
+
+
+// Route::get('proyectos/create', 'ProyectosController@create')->name('proyectos.create');
+
+
+
