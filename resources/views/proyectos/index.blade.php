@@ -9,13 +9,13 @@
 <a href="{{ route('proyectos.create') }}" class="btn btn-primary">Crear</a>
 <br>
 <br>
-
+c
 <div class="row">
     <!-- column -->
     <div class="col-lg-12">
         <div class="card">
             <div class="card-block">
-                <h4 class="card-title">Proyectos Creados</h4>
+                <h4 class="card-title">Proyectos Creados 2</h4>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
