@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Project;
 
 class ProyectosController extends Controller
 {
@@ -13,7 +14,9 @@ class ProyectosController extends Controller
      */
     public function index()
     {
-        return view('proyectos.index');
+        $projects = Project::orderBy('created_at', 'DESC')->paginate(2);
+
+        return view('proyectos.index', compact('projects'));
     }
 
     /**
@@ -60,7 +63,9 @@ class ProyectosController extends Controller
      */
     public function show($id)
     {
-        //
+        $project = Project::findOrFail($id);
+
+        return view('proyectos.show', compact('project'));
     }
 
     /**
