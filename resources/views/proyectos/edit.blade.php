@@ -2,18 +2,18 @@
 
 @section('content')
 
-<h1>Crear Proyecto</h1>
+<h1>Editar Proyecto: {{$project->title}}</h1>
 
 
 <div class="col-lg-8 col-xlg-9 col-md-7">
     <div class="card">
         <div class="card-block">
-        <form class="form-horizontal form-material" method="POST" action="{{ route('proyectos.store') }}">
-            @csrf
+        <form class="form-horizontal form-material" method="POST" action="{{ route('proyectos.update', $project) }}">
+            @csrf @method('PATCH')
                 <div class="form-group">
                     <label class="col-md-12">Título</label>
                     <div class="col-md-12">
-                    <input type="text"  class="form-control form-control-line" name="title" value="{{old('title')}}">
+                    <input type="text"  class="form-control form-control-line" name="title" value="{{ old('title', $project->title) }}">
                         <p class="text-danger">{{$errors->first('title')}}</p>
                     </div>
                 </div>
@@ -34,14 +34,14 @@
                 <div class="form-group">
                     <label class="col-md-12">Descripción</label>
                     <div class="col-md-12">
-                    <textarea rows="5" class="form-control form-control-line"  name="description" value="{{old('description')}}"></textarea>
-                    <p class="text-danger">{{$errors->first('description')}}</p>
+                    <input class="form-control form-control-line"  name="description" value="{{ old('description', $project->description) }}">
+
+                        <p class="text-danger">{{$errors->first('description')}}</p>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-12">
-                        {{-- <button class="btn btn-success" type="submit">Guardar</button> --}}
-                        <button type="submit" class="btn btn-success btn-rounded"><i class="fa fa-check"></i> Guardar</button>
+                        <button type="submit" class="btn btn-success btn-rounded"><i class="fa fa-check"></i> Actualizar</button>
                     </div>
                 </div>
             </form>

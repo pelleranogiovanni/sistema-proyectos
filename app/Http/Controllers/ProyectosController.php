@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Project;
+use Illuminate\Http\Request;
+use App\Http\Requests\CreateProjectRequest;
 
 class ProyectosController extends Controller
 {
@@ -14,7 +15,7 @@ class ProyectosController extends Controller
      */
     public function index()
     {
-        $projects = Project::orderBy('created_at', 'DESC')->paginate(2);
+        $projects = Project::orderBy('created_at', 'DESC')->paginate(4);
 
         return view('proyectos.index', compact('projects'));
     }
@@ -36,21 +37,33 @@ class ProyectosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateProjectRequest $request)
     {
-        request()->validate([
+        // $fields = request()->validate([
 
-            'nombre' => 'required',
-            'autor' => 'required',
-            'email' => 'required|email',
-            'descripcion' => 'required|min:3'
-        ], [
-            'nombre.required' => 'Ingrese el nombre por favor' //mensaje de validación personalizado
-        ]);
+        //     'title' => 'required',
+        //     'description' => 'required|min:3',
+        // ], [
+        //     'title.required' => 'Ingrese el título por favor' //mensaje de validación personalizado
+        // ]);
 
-        // return $request;
-        // return 'Datos validados';
-        return $request;
+
+        //Almacenar
+        // Project::create([
+        //     'title' => request('title'), //mediante la funcion request asigno lo que envio por formulario al campo de la BD
+        //     'description' => request('description')
+        // ]);
+
+        //Otra forma de almacenar con todo el request
+        // Project::create(request()->all());
+
+        //otra forma almacenando la variable despues de la validación
+        // Project::create($fields);
+
+        //Almacenar luego de pasar por el Requests
+        Project::create($request->validated());
+
+        return redirect()->route('proyectos.index')->with('status', 'Se creó correctamente el proyecto.');
 
 
     }
@@ -76,7 +89,9 @@ class ProyectosController extends Controller
      */
     public function edit($id)
     {
+        $project = Project::findOrFail($id);
 
+        return view('proyectos.edit', compact('project'));
     }
 
     /**
@@ -86,9 +101,13 @@ class ProyectosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateProjectRequest $request, $id)
     {
-        //
+        $project = Project::find($id);
+
+        $project->update($request->validated());
+
+        return redirect()->route('proyectos.show', $id)->with('status', 'El proyecto fue actualizado correctamente.');
     }
 
     /**
@@ -99,6 +118,11 @@ class ProyectosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // $project = Project::find($id);
+        // $project->delete();
+
+        Project::destroy($id);
+
+        return redirect()->route('proyectos.index')->with('status', 'El proyecto fue eliminado correctamente.');
     }
 }
